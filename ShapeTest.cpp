@@ -295,38 +295,30 @@ double totalArea(Shape** shapeArray, int elems)
 
 int main(int argc, char *argv[])
 {
-  // int a = strtol(argv[1], NULL, 0);
-  // int b = strtol(argv[2], NULL, 0);
+  int a = strtol(argv[1], NULL, 0);
+  int b = strtol(argv[2], NULL, 0);
 
-  int a = 10;
-  int b = 8;
+
   // "Picture Implementation"
 
   Shape *s[] = {
-      // Shape_Shape((Shape *)malloc(sizeof(Shape)), "Hello"),
 
       (Shape *)Triangle_Triangle((Triangle *)malloc(sizeof(Triangle)), "Hello", a, b),
-      // (Shape *)Triangle_Triangle((Triangle *)malloc(sizeof(Triangle)), "1", a - 1, b - 1),
+      (Shape *)Triangle_Triangle((Triangle *)malloc(sizeof(Triangle)), "1", a - 1, b - 1),
 
-      // (Shape *)Circle_Circle((Circle *)malloc(sizeof(Circle)), "2", a),
-      // (Shape *)Circle_Circle((Circle *)malloc(sizeof(Circle)), "3", a - 1),
+      (Shape *)Circle_Circle((Circle *)malloc(sizeof(Circle)), "2", a),
+      (Shape *)Circle_Circle((Circle *)malloc(sizeof(Circle)), "3", a - 1),
 
-      // (Shape *)Square_Square((Square *)malloc(sizeof(Square)), "4", a),
-      // (Shape *)Square_Square((Square *)malloc(sizeof(Square)), "5", a - 1),
+      (Shape *)Square_Square((Square *)malloc(sizeof(Square)), "4", a),
+      (Shape *)Square_Square((Square *)malloc(sizeof(Square)), "5", a - 1),
 
-      // (Shape *)Rectangle_Rectangle((Rectangle *) malloc(sizeof(Rectangle)), "6", a, b),
-      // (Shape *)Rectangle_Rectangle((Rectangle *) malloc(sizeof(Rectangle)), "7", a - 1, b - 1),
+      (Shape *)Rectangle_Rectangle((Rectangle *) malloc(sizeof(Rectangle)), "6", a, b),
+      (Shape *)Rectangle_Rectangle((Rectangle *) malloc(sizeof(Rectangle)), "7", a - 1, b - 1),
   };
 
   printAll(s, 1);
   drawAll(s, 1);
   cout << "Total : " << totalArea(s, 1) << endl;
-
-  // Drawing all Shapes in a Picture
-  // for (int i = 0; i < sizeof(s) / sizeof(*s); i++)
-  // {
-  //   s[i]->VPointer[DRAW_INDEX].void_method(s[i]);
-  // };
 
   return 0;
 }
