@@ -23,7 +23,7 @@ typedef VirtualTableEntry *VTableType;
 
 struct Shape {
   VTableType VPointer;
-  double name;
+  string name;
 };
 
 void Shape_print(Shape *_this) {
@@ -44,7 +44,7 @@ VirtualTableEntry Shape_VTable[] = {
   {.double_method = (double_method_type)Shape_area}
 };
 
-Shape* Shape_Shape(Shape *_this, double newName) {
+Shape* Shape_Shape(Shape *_this, string newName) {
   _this->VPointer = Shape_VTable;
   _this->name = newName;
 
@@ -60,7 +60,7 @@ Shape* Shape_Shape(Shape *_this, double newName) {
 struct Circle // extends Shape 
 {
   VTableType Vpointer;
-  double name;
+  string name;
 
   // new data members
   double radius;
@@ -99,7 +99,7 @@ VirtualTableEntry Circle_VTable[] = {
   {.double_method = (double_method_type)Circle_area}
 };
 
-Circle* Circle_Circle(Circle *_this, double newName, double newRadius) {
+Circle* Circle_Circle(Circle *_this, string newName, double newRadius) {
   Shape_Shape((Shape*) _this, newName);
   _this->Vpointer = Circle_VTable;
   _this->radius = newRadius;
@@ -114,7 +114,7 @@ Circle* Circle_Circle(Circle *_this, double newName, double newRadius) {
 struct Triangle // extends Shape
 {
   VTableType Vpointer;
-  double name;
+  string name;
 
   // new data members
   double base;
@@ -155,7 +155,7 @@ VirtualTableEntry Triangle_VTable[] = {
     {.void_method = (void_method_type)Triangle_draw},
     {.double_method = (double_method_type)Triangle_area}};
 
-Triangle *Triangle_Triangle(Triangle *_this, double newName, double newBase, double newHeight)
+Triangle *Triangle_Triangle(Triangle *_this, string newName, double newBase, double newHeight)
 {
   Shape_Shape((Shape *)_this, newName);
   _this->Vpointer = Triangle_VTable;
@@ -171,7 +171,7 @@ Triangle *Triangle_Triangle(Triangle *_this, double newName, double newBase, dou
 struct Square // extends Shape
 {
   VTableType Vpointer;
-  double name;
+  string name;
 
   // new data members
   int length;
@@ -205,7 +205,7 @@ VirtualTableEntry Square_VTable[] = {
   {.double_method = (double_method_type)Square_area}
 };
 
-Square *Square_Square(Square *_this, double newName, int newLength)
+Square *Square_Square(Square *_this, string newName, int newLength)
 {
   Shape_Shape((Shape *)_this, newName);
   _this->Vpointer = Square_VTable;
@@ -219,7 +219,7 @@ Square *Square_Square(Square *_this, double newName, int newLength)
 
 struct Rectangle {
   VTableType Vpointer;
-  double name;
+  string name;
   int length;
 
   // new data members
@@ -253,11 +253,11 @@ VirtualTableEntry Rectangle_VTable[] = {
     {.void_method = (void_method_type)Rectangle_draw},
     {.double_method = (double_method_type)Rectangle_area}};
 
-Rectangle *Rectangle_Rectangle(Rectangle *_this, double newName, int newLength)
+Rectangle *Rectangle_Rectangle(Rectangle *_this, string newName, int newLength, int newWidth)
 {
   Square_Square((Square*) _this, newName, newLength);
   _this->Vpointer = Rectangle_VTable;
-  _this->width = newLength;
+  _this->width = newWidth;
   return _this;
 };
 
@@ -267,6 +267,7 @@ void drawAll(Shape** shapeArray, int elems) {
   // Drawing all Shapes in a Picture
   for (int i = 0; i < elems; i++)
   {
+    cout << endl;
     shapeArray[i]->VPointer[DRAW_INDEX].void_method(shapeArray[i]);
   }
 }
@@ -292,17 +293,34 @@ double totalArea(Shape** shapeArray, int elems)
 
 // Main function
 
-int main()
+int main(int argc, char *argv[])
 {
+  // int a = strtol(argv[1], NULL, 0);
+  // int b = strtol(argv[2], NULL, 0);
+
+  int a = 10;
+  int b = 8;
   // "Picture Implementation"
+
   Shape *s[] = {
-    Shape_Shape((Shape *) malloc(sizeof(Shape)), 0),
-    (Shape *) Circle_Circle((Circle*) malloc(sizeof(Circle)), 1, 5)
+      // Shape_Shape((Shape *)malloc(sizeof(Shape)), "Hello"),
+
+      (Shape *)Triangle_Triangle((Triangle *)malloc(sizeof(Triangle)), "Hello", a, b),
+      // (Shape *)Triangle_Triangle((Triangle *)malloc(sizeof(Triangle)), "1", a - 1, b - 1),
+
+      // (Shape *)Circle_Circle((Circle *)malloc(sizeof(Circle)), "2", a),
+      // (Shape *)Circle_Circle((Circle *)malloc(sizeof(Circle)), "3", a - 1),
+
+      // (Shape *)Square_Square((Square *)malloc(sizeof(Square)), "4", a),
+      // (Shape *)Square_Square((Square *)malloc(sizeof(Square)), "5", a - 1),
+
+      // (Shape *)Rectangle_Rectangle((Rectangle *) malloc(sizeof(Rectangle)), "6", a, b),
+      // (Shape *)Rectangle_Rectangle((Rectangle *) malloc(sizeof(Rectangle)), "7", a - 1, b - 1),
   };
 
-  drawAll(s, 2);
-  printAll(s, 2);
-  cout << totalArea(s, 2);
+  printAll(s, 1);
+  drawAll(s, 1);
+  cout << "Total : " << totalArea(s, 1) << endl;
 
   // Drawing all Shapes in a Picture
   // for (int i = 0; i < sizeof(s) / sizeof(*s); i++)
