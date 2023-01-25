@@ -303,17 +303,17 @@ int main(int argc, char *argv[])
 
   Shape *s[] = {
 
-      (Shape *)Triangle_Triangle((Triangle *)malloc(sizeof(Triangle)), "Hello", a, b),
-      (Shape *)Triangle_Triangle((Triangle *)malloc(sizeof(Triangle)), "1", a - 1, b - 1),
+      (Shape *)Triangle_Triangle((Triangle *)malloc(sizeof(Triangle)), "FirstTriangle", a, b),
+      (Shape *)Triangle_Triangle((Triangle *)malloc(sizeof(Triangle)), "SecondTriangle", a - 1, b - 1),
 
-      (Shape *)Circle_Circle((Circle *)malloc(sizeof(Circle)), "2", a),
-      (Shape *)Circle_Circle((Circle *)malloc(sizeof(Circle)), "3", a - 1),
+      (Shape *)Circle_Circle((Circle *)malloc(sizeof(Circle)), "FirstCircle", a),
+      (Shape *)Circle_Circle((Circle *)malloc(sizeof(Circle)), "SecondCircle", a - 1),
 
-      (Shape *)Square_Square((Square *)malloc(sizeof(Square)), "4", a),
-      (Shape *)Square_Square((Square *)malloc(sizeof(Square)), "5", a - 1),
+      (Shape *)Square_Square((Square *)malloc(sizeof(Square)), "FirstSquare", a),
+      (Shape *)Square_Square((Square *)malloc(sizeof(Square)), "SecondSquare", a - 1),
 
-      (Shape *)Rectangle_Rectangle((Rectangle *) malloc(sizeof(Rectangle)), "6", a, b),
-      (Shape *)Rectangle_Rectangle((Rectangle *) malloc(sizeof(Rectangle)), "7", a - 1, b - 1),
+      (Shape *)Rectangle_Rectangle((Rectangle *)malloc(sizeof(Rectangle)), "FirstRectangle", a, b),
+      (Shape *)Rectangle_Rectangle((Rectangle *)malloc(sizeof(Rectangle)), "SecondRectangle", a - 1, b - 1),
   };
 
   printAll(s, 8);
