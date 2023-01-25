@@ -316,9 +316,9 @@ int main(int argc, char *argv[])
       (Shape *)Rectangle_Rectangle((Rectangle *) malloc(sizeof(Rectangle)), "7", a - 1, b - 1),
   };
 
-  printAll(s, 1);
-  drawAll(s, 1);
-  cout << "Total : " << totalArea(s, 1) << endl;
+  printAll(s, 8);
+  drawAll(s, 8);
+  cout << "Total : " << totalArea(s, 8) << endl;
 
   return 0;
 }
